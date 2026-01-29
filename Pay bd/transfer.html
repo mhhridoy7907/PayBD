@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PAY BD – Transfer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root{
+  --bg:#021C2D;
+  --primary:#013088;
+  --accent:#5CE1E6;
+  --card:#022B45;
+}
+
+body{
+  background:var(--bg);
+  color:white;
+  padding-bottom:90px;
+  animation:pageIn .4s ease;
+}
+
+@keyframes pageIn{
+  from{opacity:0;transform:translateY(10px)}
+  to{opacity:1;transform:none}
+}
+
+/* HEADER */
+.header{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:16px;
+  background:linear-gradient(135deg,var(--primary),var(--accent));
+  border-bottom-left-radius:20px;
+  border-bottom-right-radius:20px;
+}
+
+.header i{
+  font-size:22px;
+  cursor:pointer;
+}
+
+.header h2{
+  font-size:20px;
+}
+
+/* CARD */
+.card{
+  background:var(--card);
+  margin:18px;
+  padding:18px;
+  border-radius:18px;
+  box-shadow:0 12px 30px rgba(0,0,0,.4);
+}
+
+.input{
+  margin-bottom:15px;
+}
+
+.input label{
+  font-size:14px;
+  opacity:.8;
+}
+
+.input input, .input textarea{
+  width:100%;
+  margin-top:6px;
+  padding:14px;
+  border:none;
+  border-radius:12px;
+  outline:none;
+  font-size:16px;
+}
+
+.input textarea{
+  resize:none;
+}
+
+/* AMOUNT */
+.amount{
+  text-align:center;
+  margin:20px 0;
+}
+
+.amount input{
+  background:transparent;
+  border:none;
+  outline:none;
+  color:white;
+  font-size:36px;
+  text-align:center;
+  width:100%;
+}
+
+.amount small{
+  opacity:.7;
+}
+
+/* QUICK USERS */
+.section{
+  margin:0 18px 18px;
+}
+
+.section h3{
+  margin-bottom:12px;
+}
+
+.quick{
+  display:flex;
+  gap:14px;
+  overflow-x:auto;
+}
+
+.user{
+  background:var(--card);
+  min-width:80px;
+  padding:12px;
+  border-radius:16px;
+  text-align:center;
+}
+
+.user img{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  margin-bottom:5px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.user img:hover{
+  transform:scale(1.1);
+  box-shadow:0 6px 15px rgba(0,0,0,0.3);
+}
+
+/* IMAGE POPUP (CENTER BOX) */
+#img-popup{
+  display:none;
+  position:fixed;
+  top:50%; left:50%;
+  transform:translate(-50%, -50%);
+  background:rgba(0,0,0,0.8);
+  padding:10px;
+  border-radius:12px;
+  z-index:999;
+}
+#img-popup img{
+  max-width:300px;
+  max-height:300px;
+  border-radius:12px;
+  box-shadow:0 10px 25px rgb(1, 247, 255);
+}
+
+/* BUTTON */
+.btn{
+  margin:20px 18px;
+  background:linear-gradient(135deg,var(--primary),var(--accent));
+  border:none;
+  width:calc(100% - 36px);
+  padding:16px;
+  border-radius:16px;
+  color:white;
+  font-size:18px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+/* FOOTER */
+.footer{
+  position:fixed;
+  bottom:0;
+  width:100%;
+  background:linear-gradient(135deg,var(--primary),#0454a5);
+  display:flex;
+  justify-content:space-around;
+  padding:12px 0;
+}
+
+.footer .item{
+  text-align:center;
+  cursor:pointer;
+  color:#fff;
+  opacity:.85;
+}
+
+.footer .item i{
+  font-size:22px;
+  display:block;
+}
+
+.footer .item.active{
+  opacity:1;
+  color:var(--accent);
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <i class="fa-solid fa-arrow-left" onclick="goBack()"></i>
+  <h2>Transfer Money</h2>
+</div>
+
+<div class="card">
+  <div class="input">
+    <label>Receiver Account / Phone</label>
+    <input type="text" placeholder="Enter number or ID">
+  </div>
+
+  <div class="amount">
+    <input type="number" placeholder="৳ 0">
+    <small>Available Balance: ৳12,450</small>
+  </div>
+
+  <div class="input">
+    <label>Note (optional)</label>
+    <textarea rows="2" placeholder="Write something..."></textarea>
+  </div>
+</div>
+
+<div class="section">
+  <h3>Quick Transfer</h3>
+  <div class="quick">
+    <div class="user"><img src="img/nabila.jpg" onclick="showImg(this.src)"><br>Nabila</div>
+    <div class="user"><img src="img/Tamanna.jpg" onclick="showImg(this.src)"><br>Tamanna</div>
+    <div class="user"><img src="img/billah.jpeg" onclick="showImg(this.src)"><br>Mutasim Billah</div>
+    <div class="user"><img src="img/profile 1.jpg" onclick="showImg(this.src)"><br>Rafi</div>
+  </div>
+</div>
+
+<!-- IMAGE POPUP -->
+<div id="img-popup" onclick="hideImg()">
+  <img id="popup-img" src="">
+</div>
+
+<button class="btn"><i class="fa-solid fa-paper-plane"></i> Transfer  Money</button>
+
+<div class="footer">
+  <div class="item" onclick="goPage('home.html')">
+    <i class="fa-solid fa-house"></i>
+    Home
+  </div>
+
+  <div class="item" onclick="goPage('transfer.html')">
+    <i class="fa-solid fa-paper-plane"></i>
+    Transfer
+  </div>
+
+  <div class="item" onclick="goPage('profile.html')">
+    <i class="fa-solid fa-user"></i>
+    Profile
+  </div>
+</div>
+
+<script>
+function goPage(page){
+  document.body.style.opacity = "0";
+  setTimeout(()=>{window.location.href = page;},200);
+}
+function goBack(){history.back();}
+
+// Show profile image popup
+function showImg(src){
+  document.getElementById("popup-img").src = src;
+  document.getElementById("img-popup").style.display = "block";
+}
+
+// Hide profile image popup
+function hideImg(){
+  document.getElementById("img-popup").style.display = "none";
+}
+</script>
+
+</body>
+</html>

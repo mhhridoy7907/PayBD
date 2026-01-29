@@ -1,0 +1,45 @@
+
+body{
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    position: relative;
+    overflow: hidden;                
+}
+
+
+
+.logo-center img{
+    width: 249px;
+    height: 249px;
+    border-radius: 50%;
+
+}
+
+/* Logo pulse animation */
+@keyframes logoPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+}
+
+/* Rays background animation */
+.ray{
+    width: 6px;
+    height: 80px;
+    background:#013088;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-origin: bottom center ;
+    animation: glow 2s linear infinite;
+}
+
+@keyframes glow {
+    0%,25%  { background-color: #013088;}
+    50%,75%  { background-color: #5ce1e6;}
+    100% { background-color: #013088;}
+}

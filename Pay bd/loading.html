@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PAY BD Login</title>
+<link rel="stylesheet" href="css/loading.css">
+</head>
+<body>
+
+<div class="logo-center">
+    <img src="img/pay bd.jpg" alt="PAY Logo">
+</div>
+
+<script>
+const numRays = 40; 
+
+for(let i = 0; i < numRays; i++){
+    const ray = document.createElement('div');
+    ray.className = 'ray';
+    const angle = (i / numRays) * 360; 
+    ray.style.transform = `translate(-50%, -100%) rotate(${angle}deg) translateY(-130px)`;
+    ray.style.animationDelay = `${(i * 0.05)}s`;
+    document.body.appendChild(ray);
+}
+
+// Redirect to profile.html after 7 seconds
+setTimeout(() => {
+    window.location.href = "profile.html";
+}, 7000);
+</script>
+
+</body>
+</html>

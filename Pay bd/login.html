@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login & Register - PAY BD</title>
+<link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+
+<div class="header">
+  <img src="img/pay logo.png" alt="PAY BD Logo">
+  <h1>Welcome to PAY BD</h1>
+</div>
+
+<div class="container">
+  <!-- LOGIN FORM -->
+  <div class="form-box" id="loginForm">
+    <h2>Login</h2>
+    <input type="text" placeholder="Phone Number" id="loginPhone" required>
+    <div class="password-container">
+      <input type="password" placeholder="Password" id="loginPassword" required>
+      <span class="toggle-pass" onclick="togglePassword('loginPassword')">Show</span>
+    </div>
+    <button class="btn" onclick="login()">Login</button>
+    <div class="toggle-text" onclick="toggleForm()">Don't have an account? Register</div>
+  </div>
+
+  <!-- REGISTER FORM -->
+  <div class="form-box hidden" id="registerForm">
+    <h2>Register</h2>
+    <input type="text" placeholder="Full Name" id="regName" required>
+    <input type="text" placeholder="Phone Number" id="regPhone" required>
+    <div class="password-container">
+      <input type="password" placeholder="Password" id="registerPassword" required>
+      <span class="toggle-pass" onclick="togglePassword('registerPassword')">Show</span>
+    </div>
+    <div class="password-container">
+      <input type="password" placeholder="Confirm Password" id="registerConfirm" required>
+      <span class="toggle-pass" onclick="togglePassword('registerConfirm')">Show</span>
+    </div>
+    <button class="btn" onclick="register()">Register</button>
+    <div class="toggle-text" onclick="toggleForm()">Already have an account? Login</div>
+  </div>
+</div>
+
+<script src="js/login.js"></script>
+</body>
+</html>

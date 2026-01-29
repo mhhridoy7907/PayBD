@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<title>PAY BD – Profile</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root{
+  --bg:#021C2D;
+  --primary:#013088;
+  --accent:#5CE1E6;
+  --card:#022B45;
+  --glass:#ffffff12;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:#fff;
+  font-family:Segoe UI,Roboto,sans-serif;
+  padding-bottom:95px;
+}
+
+/* HEADER */
+.header{
+  background:linear-gradient(135deg,var(--primary),var(--accent));
+  padding:30px 20px 30px;
+  border-radius:0 0 28px 28px;
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+.header img{
+  width:160px;
+  height:160px;
+  border-radius:50%;
+  border:4px solid #fff;
+  cursor:pointer;
+  object-fit:cover;
+  transition: transform .3s;
+}
+.header img:hover{transform:scale(1.05);}
+
+.header .user-info{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.header .user-info h2{
+  margin:0;
+  font-size:35px; /* বড় নামের ফন্ট */
+}
+
+.header .user-info small{
+  margin-top:4px;
+  font-size:16px;
+  opacity:0.8;
+}
+
+/* CARD */
+.profile-card{
+  background:var(--card);
+  margin:20px 15px 15px;
+  border-radius:20px;
+  padding:22px;
+  box-shadow:0 10px 30px #00000050;
+  transition: 0.3s;
+}
+.profile-card:hover{box-shadow:0 15px 40px #00000070;}
+
+.info{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 0;
+  border-bottom:1px solid #ffffff20;
+}
+.info:last-child{border:none}
+
+.info span{font-weight:500;}
+
+input, select{
+  background:var(--glass);
+  border:none;
+  color:#fff;
+  padding:7px 12px;
+  border-radius:10px;
+  text-align:right;
+  outline:none;
+  min-width:120px;
+}
+
+/* BUTTONS */
+.option,
+#save-btn,
+.logout{
+  margin:15px;
+  padding:16px;
+  border-radius:16px;
+  text-align:center;
+  cursor:pointer;
+  font-weight:600;
+  transition:.3s;
+}
+
+.option{
+  background:var(--card);
+}
+.option:hover{background:#033a5f}
+
+#save-btn{
+  background:#27ae60;
+  display:none;
+}
+
+.logout{
+  background:#c0392b;
+}
+
+/* FOOTER */
+.footer{
+  position:fixed;
+  bottom:0;
+  width:100%;
+  background:linear-gradient(135deg,var(--primary),#0454a5);
+  display:flex;
+  justify-content:space-around;
+  padding:12px 0;
+}
+
+.footer .item{
+  text-align:center;
+  cursor:pointer;
+  color:#fff;
+  opacity:.85;
+}
+
+.footer .item i{
+  font-size:22px;
+  display:block;
+}
+
+.footer .item.active{
+  opacity:1;
+  color:var(--accent);
+}
+
+/* MODAL */
+.modal{
+  position:fixed;
+  inset:0;
+  background:#00000090;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+}
+
+.modal-box{
+  background:var(--card);
+  padding:22px;
+  width:90%;
+  max-width:360px;
+  border-radius:18px;
+}
+
+.modal-box h3{
+  text-align:center;
+  margin-bottom:15px;
+}
+
+.modal-box input{
+  width:100%;
+  margin-bottom:12px;
+  text-align:left;
+}
+
+.modal-box button{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:12px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.save-pass{background:#27ae60;color:#fff}
+.close-pass{background:#555;margin-top:8px;color:#fff}
+
+#profile-upload{display:none}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <img id="profile-img" src="img/default-profile.jpg"
+       onclick="document.getElementById('profile-upload').click()">
+  <input type="file" id="profile-upload" accept="image/*" onchange="uploadProfile(event)">
+  <div class="user-info">
+    <h2 id="show-name">User</h2>
+    <small id="show-email">email@mail.com</small>
+  </div>
+</div>
+
+<!-- PROFILE INFO -->
+<div class="profile-card">
+  <div class="info">
+    <span>Name</span>
+    <input id="nameInput" disabled>
+  </div>
+  <div class="info">
+    <span>Phone Number</span>
+    <b id="email"></b>
+  </div>
+  <div class="info">
+    <span>Account ID</span>
+    <b>978571016</b>
+  </div>
+  <div class="info">
+    <span>Bank Card</span>
+    <input id="bankInput" disabled placeholder="Enter Bank Name">
+  </div>
+  <div class="info">
+    <span>Card Type</span>
+    <select id="cardType" disabled>
+      <option value="Master">Master</option>
+      <option value="Visa">Visa</option>
+      <option value="Credit">Credit</option>
+    </select>
+  </div>
+</div>
+
+<!-- OPTIONS -->
+<div class="option" onclick="enableEdit()">
+  <i class="fa-solid fa-user-pen"></i> Edit Profile
+</div>
+
+<div class="option" onclick="openPass()">
+  <i class="fa-solid fa-key"></i> Change Password
+</div>
+
+<div id="save-btn" onclick="saveProfile()">Save Changes</div>
+
+<div class="logout" onclick="logout()">
+  <i class="fa-solid fa-right-from-bracket"></i> Logout
+</div>
+
+<!-- PASSWORD MODAL -->
+<div class="modal" id="passModal">
+  <div class="modal-box">
+    <h3>Change Password</h3>
+    <input type="password" id="oldPass" placeholder="Old Password">
+    <input type="password" id="newPass" placeholder="New Password">
+    <input type="password" id="confirmPass" placeholder="Confirm Password">
+    <button class="save-pass" onclick="changePassword()">Update Password</button>
+    <button class="close-pass" onclick="closePass()">Cancel</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="item" onclick="goPage('home.html')">
+    <i class="fa-solid fa-house"></i>
+    Home
+  </div>
+  <div class="item" onclick="goPage('transfer.html')">
+    <i class="fa-solid fa-paper-plane"></i>
+    Transfer
+  </div>
+  <div class="item active">
+    <i class="fa-solid fa-user"></i>
+    Profile
+  </div>
+</div>
+
+<script>
+if(!localStorage.getItem("loggedIn")){
+  location.href="login.html";
+}
+
+const nameInput = document.getElementById("nameInput");
+const showName = document.getElementById("show-name");
+const showEmail = document.getElementById("show-email");
+const profileImg = document.getElementById("profile-img");
+const bankInput = document.getElementById("bankInput");
+const cardType = document.getElementById("cardType");
+
+/* LOAD PROFILE */
+function loadProfile(){
+  const user = JSON.parse(localStorage.getItem("userProfile")||"{}");
+  nameInput.value = user.name || "User Name";
+  showName.innerText = user.name || "User Name";
+  showEmail.innerText = user.email || "email@mail.com";
+  document.getElementById("email").innerText = user.email || "email@mail.com";
+  profileImg.src = user.profileImg || "img/default-profile.jpg";
+  bankInput.value = user.bank || "";
+  cardType.value = user.cardType || "Master";
+  
+  // Update home page info immediately if loaded
+  localStorage.setItem("homeProfile", JSON.stringify(user));
+}
+loadProfile();
+
+/* EDIT */
+function enableEdit(){
+  nameInput.disabled = false;
+  bankInput.disabled = false;
+  cardType.disabled = false;
+  nameInput.focus();
+  document.getElementById("save-btn").style.display="block";
+}
+
+/* SAVE PROFILE (Name, Bank & Card) */
+function saveProfile(){
+  const user = JSON.parse(localStorage.getItem("userProfile")||"{}");
+  user.name = nameInput.value.trim() || "User Name";
+  user.bank = bankInput.value.trim() || "";
+  user.cardType = cardType.value;
+  localStorage.setItem("userProfile",JSON.stringify(user));
+  localStorage.setItem("homeProfile",JSON.stringify(user));
+  showName.innerText = user.name;
+  nameInput.disabled = true;
+  bankInput.disabled = true;
+  cardType.disabled = true;
+  document.getElementById("save-btn").style.display="none";
+  alert("Profile Updated Successfully");
+}
+
+/* IMAGE UPLOAD WITH DEVICE + RELOAD PERSIST */
+function uploadProfile(e){
+  const file = e.target.files[0];
+  if(file){
+    const reader = new FileReader();
+    reader.onload = function(ev){
+      profileImg.src = ev.target.result;
+      const u = JSON.parse(localStorage.getItem("userProfile")||"{}");
+      u.profileImg = ev.target.result;
+      localStorage.setItem("userProfile",JSON.stringify(u));
+      localStorage.setItem("homeProfile",JSON.stringify(u));
+    }
+    reader.readAsDataURL(file);
+  }
+}
+
+/* PASSWORD */
+function openPass(){document.getElementById("passModal").style.display="flex"}
+function closePass(){document.getElementById("passModal").style.display="none"}
+
+function changePassword(){
+  const oldP = oldPass.value;
+  const newP = newPass.value;
+  const conP = confirmPass.value;
+  const auth = JSON.parse(localStorage.getItem("userAuth")||"{}");
+  if(auth.password !== oldP) return alert("Old password wrong");
+  if(newP.length < 4) return alert("Password too short");
+  if(newP !== conP) return alert("Password not match");
+  auth.password = newP;
+  localStorage.setItem("userAuth",JSON.stringify(auth));
+  alert("Password Updated");
+  closePass();
+}
+
+/* LOGOUT */
+function logout(){
+  localStorage.clear();
+  location.href="login.html";
+}
+
+function goPage(p){location.href=p}
+</script>
+
+</body>
+</html>

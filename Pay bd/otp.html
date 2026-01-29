@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OTP Verification - PAY BD</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    body, html {
+      height: 100%;
+      background: #022640;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    /* HEADER */
+    .header {
+      width: 100%;
+      background: #fff;
+      text-align: left;
+      padding: 20px 30px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+    }
+
+    .header img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      margin-right: 15px;
+    }
+
+    .header h1 {
+      font-size: 36px;
+      font-weight: bold;
+      color: #013088;
+    }
+
+    /* OTP Card */
+    .otp-container {
+      background: linear-gradient(135deg, #013088, #5CE1E6);
+      width: 380px;
+      border-radius: 20px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+      margin-top: 30px;
+      padding: 40px;
+      text-align: center;
+      color: white;
+      animation: float 6s ease-in-out infinite;
+      transition: opacity 0.8s, transform 0.8s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .otp-container.fade-out {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+
+    .otp-container h2 {
+      margin-bottom: 20px;
+      font-size: 26px;
+    }
+
+    .otp-box {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px 0;
+    }
+
+    .otp-box input {
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 10px;
+      background-color: #013088;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #5CE1E6;
+      color: #022640;
+      transform: scale(1.05);
+    }
+
+    .resend {
+      margin-top: 15px;
+      color: #013088;
+      cursor: pointer;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 400px) {
+      .otp-box input {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <img src="img/pay logo.png" alt="PAY BD Logo">
+    <h1>Welcome to PAY BD</h1>
+  </div>
+
+  <!-- OTP Card -->
+  <div class="otp-container" id="otpCard">
+    <h2>Enter OTP</h2>
+    <p>We have sent a 4-digit OTP to your registered number/email.</p>
+
+    <div class="otp-box">
+      <input type="text" maxlength="1" id="otp1">
+      <input type="text" maxlength="1" id="otp2">
+      <input type="text" maxlength="1" id="otp3">
+      <input type="text" maxlength="1" id="otp4">
+    </div>
+
+    <button class="btn" onclick="submitOTP()">Verify OTP</button>
+    <div class="resend" onclick="resendOTP()">Resend OTP</div>
+  </div>
+
+  <script>
+    const otpCard = document.getElementById('otpCard');
+
+    function submitOTP(){
+      const otp =
+        otp1.value + otp2.value + otp3.value + otp4.value;
+
+      if(otp.length === 4){
+        // Animate fade-out
+        otpCard.classList.add('fade-out');
+
+        // Wait for animation to finish before redirecting
+        setTimeout(() => {
+          localStorage.setItem("loggedIn", "true");
+          window.location.href = "loading.html";
+        }, 800); // 800ms matches CSS transition
+      } else {
+        alert("4 digit OTP দিন");
+      }
+    }
+
+    function resendOTP(){
+      alert("OTP পুনরায় পাঠানো হয়েছে।");
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<title>PAY BD – Home</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<link rel="stylesheet" href="css/home.css">
+
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">
+    <img src="img/default-profile.jpg" class="profile" id="home-profile">
+    <div><small>Hello</small><br><b id="home-name">User</b></div>
+  </div>
+  <div class="header-icons">
+    <i class="fa-solid fa-bell"></i>
+    <i class="fa-solid fa-qrcode"></i>
+    <img src="img/pay bd.jpg">
+  </div>
+</div>
+
+<!-- SLIDER -->
+<div class="slider">
+  <img src="img/COVER 1.jpg">
+  <img src="img/cover 2.jpg">
+  <img src="img/cover 3.jpg">
+  <img src="img/cover 4.jpg">
+  <img src="img/cover 5.jpg">
+</div>
+
+<!-- ACCOUNT -->
+<div class="card">
+  <div class="row">
+    <span>Account ID: 978571016</span>
+    <i class="fa-solid fa-copy copy" onclick="navigator.clipboard.writeText('123456789')"></i>
+  </div>
+  <small class="text-soft">Business Account</small>
+  <div class="balance">
+    <span id="bal">৳ 120,450</span>
+    <select onchange="currency(this.value)">
+      <option>BDT</option>
+      <option>USD</option>
+      <option>EUR</option>
+    </select>
+  </div>
+</div>
+
+<!-- TOP SERVICES -->
+<div class="section">
+  <h3>Top Services</h3>
+  <div class="services">
+    <div class="service"><i class="fa-solid fa-paper-plane"></i><br>Send</div>
+    <div class="service"><i class="fa-solid fa-wifi"></i><br>Data</div>
+    <div class="service"><i class="fa-solid fa-file-invoice"></i><br>Bills</div>
+    <div class="service"><i class="fa-solid fa-heart"></i><br>Life</div>
+    <div class="service"><i class="fa-solid fa-ellipsis"></i><br>More</div>
+  </div>
+</div>
+
+<!-- QUICK TRANSFER -->
+<div class="section">
+  <h3>Quick Transfer</h3>
+  <div class="quick">
+    <div class="user"><img src="img/profile 1.jpg" onclick="showImg(this.src)"><br>Rafi</div>
+    <div class="user"><img src="img/Tamanna.jpg" onclick="showImg(this.src)"><br>Tamanna</div>
+    <div class="user"><img src="img/nabila.jpg" onclick="showImg(this.src)"><br>Nabila</div>
+    <div class="user"><img src="img/billah.jpeg" onclick="showImg(this.src)"><br>Mutasim Billah</div>
+  </div>
+</div>
+
+<!-- IMAGE POPUP -->
+<div id="img-popup" onclick="hideImg()">
+  <img id="popup-img" src="">
+</div>
+
+<!-- RECENT TRANSFERS -->
+<div class="section">
+  <h3>Recent Transfers</h3>
+  <div class="tx"><span>Rafi</span><span class="debit">-৳500</span></div>
+  <div class="tx"><span>Tamanna</span><span class="credit">+৳1200</span></div>
+  <div class="tx"><span>Nabila</span><span class="debit">-৳300</span></div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="item" onclick="goPage('home.html')">
+    <i class="fa-solid fa-house"></i>
+    Home
+  </div>
+
+  <div class="item" onclick="goPage('transfer.html')">
+    <i class="fa-solid fa-paper-plane"></i>
+    Transfer
+  </div>
+
+  <div class="item" onclick="goPage('profile.html')">
+    <i class="fa-solid fa-user"></i>
+    Profile
+  </div>
+</div>
+
+<script src="js/home.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PAY Loading</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: Arial, sans-serif;
+}
+
+body{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(135deg,#ffffff,#f1f7ff);
+}
+
+.splash{
+  text-align:center;
+  animation:fadeOut 1s ease forwards;
+  animation-delay:9s;
+}
+
+.logo{
+  width:180px;
+  animation:logoAnim 3s ease-in-out infinite;
+  
+}
+
+.text{
+  margin-top:25px;
+  font-size:16px;
+  letter-spacing:3px;
+  color:#013088;
+  animation:blink 1.4s infinite;
+}
+
+.progress-box{
+  width:230px;
+  height:6px;
+  background:#ddd;
+  border-radius:20px;
+  margin:18px auto 0;
+  overflow:hidden;
+}
+
+.progress{
+  width:0%;
+  height:100%;
+  background:linear-gradient(90deg,#5CE1E6,#013088);
+  animation:load 10s linear forwards;
+}
+
+/* Animations */
+@keyframes logoAnim{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.15)}
+  100%{transform:scale(1)}
+}
+
+@keyframes blink{
+  0%,100%{opacity:1}
+  50%{opacity:.4}
+}
+
+@keyframes load{
+  from{width:0%}
+  to{width:100%}
+}
+
+@keyframes fadeOut{
+  to{opacity:0}
+}
+</style>
+</head>
+
+<body>
+
+<div class="splash">
+  <img src="img/pay logo.png" class="logo" alt="PAY">
+  <div class="text">LOADING</div>
+
+  <div class="progress-box">
+    <div class="progress"></div>
+  </div>
+</div>
+
+<script>
+  // 10 second por login.html open hobe
+  setTimeout(() => {
+    window.location.href = "login.html";
+  }, 10000);
+</script>
+
+</body>
+</html>
