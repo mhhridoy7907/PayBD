@@ -62,7 +62,7 @@ PayBD/
 ## 📄 System Design
 You can view the full system architecture, database design, and payment flow in the PDF:
 
-[View System Design PDF](./system-design.pdf)
+[View System Design PDF]([./system-design.pdf](https://github.com/mhhridoy7907/PayBD/blob/main/system%20design.pdf))
 
 ---
 
