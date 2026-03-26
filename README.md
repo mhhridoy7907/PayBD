@@ -73,13 +73,12 @@ You can view the full system architecture, database design, and payment flow in 
 
 ![preview](sy-design-img/mhhridoy.png)
 
-[View System Design PDF]([./system-design.pdf](https://github.com/mhhridoy7907/PayBD/blob/main/system%20design.pdf))
 
 ---
 
 ##  Architecture Overview
 ```
-User App / Web
+<b> User App / Web
 
 ↓
 
@@ -103,7 +102,7 @@ Database (MySQL)
 
 ↓
 
-Security Layer
+Security Layer </b>
 ```
 ---
 
